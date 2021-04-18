@@ -1,7 +1,10 @@
  # Steps to Run From Docker Image
-mvn clean package    
+mvn clean package
+
 docker build -f docker/Dockerfile -t viveknegi1997/keyvalue:latest .
+
 docker push viveknegi1997/keyvalue:latest
+
 docker run -it -p8080:8080 viveknegi1997/keyvalue:latest
 
 
