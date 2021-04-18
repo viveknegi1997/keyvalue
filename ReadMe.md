@@ -1,6 +1,8 @@
 # Assumptions
 if key is already present, will be overriding it with new value
-key cannot be null
+Json body to set key
+{"key":"abc-1","value":"abc"}
+
 
 
 # Steps to Run From Docker Image
