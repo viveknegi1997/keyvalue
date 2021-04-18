@@ -21,8 +21,8 @@ public class MainController {
 	
 	@RequestMapping(value = "/set", method = RequestMethod.POST)
 	@ResponseBody
-	public void set(@RequestBody KeyValue keyvalue) {
-		keyValueService.set(keyvalue);
+	public String set(@RequestBody KeyValue keyvalue) {
+		return keyValueService.set(keyvalue);
 	}
 
 	@RequestMapping(value = "/get/{key}", method = RequestMethod.GET)

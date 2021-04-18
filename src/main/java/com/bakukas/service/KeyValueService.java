@@ -10,14 +10,16 @@ import com.bakukas.model.KeyValue;
 public class KeyValueService {
 	HashMap<String, String> keyValueHashMap = new HashMap<>();
 	
-	public void set(KeyValue keyvalue) {
-
+	public String set(KeyValue keyvalue) {
+		if(keyvalue.getKey()==null||keyvalue.getKey()=="")
+			return "key cannot be null";
 		keyValueHashMap.put(keyvalue.getKey(), keyvalue.getValue());
+		return "key is inserted";
 	}
 	
 	public String getKey(String key) {
 		if (keyValueHashMap.containsKey(key)) {
-			return key;
+			return keyValueHashMap.get(key);
 		}
 		return "key not found";
 	}
