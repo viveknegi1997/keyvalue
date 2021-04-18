@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.serviceName }}
+  labels:
+    environment: {{ .Values.environment }}
+    app: {{ .Values.serviceName }}
+spec:
+  selector:
+    app: {{ .Values.serviceName }}
+    environment: {{ .Values.environment }}
+  ports:
+  - name: csm-svc-http
+    protocol: TCP
+    port: {{ .Values.servicePort }}
+    targetPort: 8080

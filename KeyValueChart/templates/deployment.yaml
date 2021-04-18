@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: {{ .Values.serviceName}}
+spec:
+ replicas: {{ .Values.replicas }}
+ selector:
+   matchLabels:
+     app: {{ .Values.serviceName }}
+     environment: {{ .Values.environment }}
+     product: {{ .Values.product }}
+ revisionHistoryLimit: 2
+ strategy:
+   type: RollingUpdate
+   rollingUpdate:
+     maxUnavailable: 40%
+ template:
+   metadata:
+     labels:
+       app: {{ .Values.serviceName}}
+       environment: {{ .Values.environment }}
+       service-app: {{ .Values.serviceName}}
+       product: {{ .Values.product }}
+      {{ if $.Values.prometheus.enabled }}
+     annotations:
+       prometheus.io/scrape: "{{ $.Values.prometheus.scrape }}"
+       prometheus.io/path: "/actuator/prometheus"
+       prometheus.io/port: "{{ $.Values.prometheus.port }}"
+      {{ end }}
+   spec:
+     containers:
+     - name: {{ .Values.serviceName}}
+       image: {{ .Values.repository }}:{{ .Values.tag }}
+      #  # run as lint (uid is 2000)
+       securityContext:
+         runAsUser: 2000
+       ports:
+       - containerPort: {{ .Values.deployment.containerPort }}
+         name: keyvaluestore
+       imagePullPolicy: Always
+

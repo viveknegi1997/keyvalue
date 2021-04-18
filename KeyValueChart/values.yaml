@@ -1,0 +1,27 @@
+serviceName: keyvaluestore
+repository: docker.io/viveknegi1997/keyvalue
+product: bakukas
+environment: dev
+tag: latest
+replicas: 1
+
+servicePort: 8080
+
+
+deployment:
+  containerPort: 8080
+
+prometheus:
+  scrape: true
+  port: 8080
+
+createIngress: false
+
+
+
+# limits:
+#   cpu: 500m
+#   memory: 1Gi
+# requests:
+#   cpu: 100m
+#   memory: 1Gi
