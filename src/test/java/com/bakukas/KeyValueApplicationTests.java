@@ -24,7 +24,7 @@ class KeyValueApplicationTests {
 		KeyValue keyvalue=new KeyValue("abc-1","a");
 		keyValueService.set(keyvalue);
 		result=keyValueService.getKey("abc-1");
-		assertEquals(result,"abc-1");
+		assertEquals(result,"a");
 	}
 	
 	@Test
